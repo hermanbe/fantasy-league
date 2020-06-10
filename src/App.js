@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Home from './Home/Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello world. THis is fantasy league.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { appname: 'fantasy-league' };
+    this.setAppName = this.setAppName.bind(this);
+  }
+  setAppName(appName) {
+    this.setState({ appname: appName });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Home appname={this.state.appname} setAppname={this.setAppName}></Home>
+      </div>
+    );
+  }
 }
 
 export default App;
