@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
-import Home from './Home/Home';
+import Home from './Screens/Home/Home';
+import Landingscreen from './Screens/LandingScreen/landingscreen';
+import Newbetting from './Screens/NewBetting/newbetting';
+import Menu from './Components/Menu/menu';
 
 class App extends Component {
   constructor(props) {
@@ -14,9 +18,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Home appname={this.state.appname} setAppname={this.setAppName}></Home>
-      </div>
+        <Router>
+          <Menu />
+          <Switch>
+            <Route path='/home'>
+              <Home appname={this.state.appname} setAppname={this.setAppName}></Home>
+            </Route>
+            <Route path='/newbet'>
+              <Newbetting />
+            </Route>
+            <Route path='/'>
+              <Landingscreen />
+            </Route>
+          </Switch>
+        </Router>
     );
   }
 }
